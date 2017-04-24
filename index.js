@@ -16,7 +16,10 @@ module.exports = function cssToStyle(cssText) {
       return value && value[0] && value[1];
     })
     .reduce(function(styles, value) {
-      styles[camelCase(value[0].replace('-ms-', 'ms-'))] = value[1];
+      var prop = value[0];
+      if (prop === 'float') prop = 'cssFloat';
+      if (prop.substr(0, 4) === '-ms-') prop = prop.substr(1);
+      styles[camelCase(prop)] = value[1];
       return styles;
     }, {});
 };

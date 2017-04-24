@@ -17,6 +17,11 @@ describe('css-to-style', function() {
       .toEqual({ WebkitTransform: 'scale(2)', msTransform: 'scale(2)' });
   });
 
+  it('transforms float rule property to cssFloat', function() {
+    expect(cssToStyle('float: left'))
+      .toEqual({ cssFloat: 'left' });
+  });
+
   it('ignores empty rules', function() {
     expect(cssToStyle('color: ; font-size: 2em; : 1; ;; '))
       .toEqual({ fontSize: '2em' });
