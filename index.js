@@ -16,7 +16,7 @@ module.exports = function cssToStyle(cssText) {
       return value && value[0] && value[1];
     })
     .reduce(function(styles, value) {
-      styles[camelCase(value[0])] = value[1];
+      styles[camelCase(value[0].replace('-ms-', 'ms-'))] = value[1];
       return styles;
     }, {});
 };
