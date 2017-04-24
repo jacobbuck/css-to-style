@@ -4,7 +4,7 @@
   "description": "Transform a string of css rules into a style object",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "mocha"
   },
   "repository": {
     "type": "git",
@@ -22,5 +22,9 @@
   "bugs": {
     "url": "https://github.com/jacobbuck/css-to-style/issues"
   },
-  "homepage": "https://github.com/jacobbuck/css-to-style#readme"
+  "homepage": "https://github.com/jacobbuck/css-to-style",
+  "devDependencies": {
+    "expect": "^1.20.2",
+    "mocha": "^3.3.0"
+  }
 }
