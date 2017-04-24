@@ -18,7 +18,7 @@ describe('css-to-style', function() {
   });
 
   it('ignores empty rules', function() {
-    expect(cssToStyle('color: ; font-size: 2em; : 1; '))
+    expect(cssToStyle('color: ; font-size: 2em; : 1; ;; '))
       .toEqual({ fontSize: '2em' });
   });
 
