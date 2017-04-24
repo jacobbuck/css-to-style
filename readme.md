@@ -1,6 +1,6 @@
 # css-to-style
 
-Transforms a string of css rules into a style object.
+Transform a string of css rules into a style object.
 
 ## Usage
 
