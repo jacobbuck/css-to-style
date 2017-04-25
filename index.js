@@ -1,6 +1,10 @@
 'use strict';
 
-var camelCase = require('./camel-case');
+function camelCase(value) {
+  return value.replace(/\-\w/g, function(matches) {
+    return matches[1].toUpperCase();
+  });
+}
 
 module.exports = function cssToStyle(cssText) {
   return cssText
