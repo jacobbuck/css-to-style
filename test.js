@@ -23,7 +23,7 @@ describe('css-to-style', function() {
   });
 
   it('transforms rule properties of any case to camelCase', function() {
-    expect(cssToStyle('FONT-SIZE: 2rem; font-WEIGHT: bold; oPaCiTy: 1;'))
+    expect(cssToStyle('FONT-SIZE: 2em; font-WEIGHT: bold; oPaCiTy: 1;'))
       .toEqual({ fontSize: '2em', fontWeight: 'bold', opacity: '1' });
   });
 
