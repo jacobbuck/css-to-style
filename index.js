@@ -1,8 +1,8 @@
 'use strict';
 
 function camelCase(value) {
-  return value.replace(/\-\w/g, function(matches) {
-    return matches[1].toUpperCase();
+  return value.replace(/\-(\w|$)/g, function(m, p1) {
+    return p1.toUpperCase();
   });
 }
 
