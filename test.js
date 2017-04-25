@@ -22,6 +22,11 @@ describe('css-to-style', function() {
       .toEqual({ cssFloat: 'left' });
   });
 
+  it('transforms rule properties of any case to camelCase', function() {
+    expect(cssToStyle('FONT-SIZE: 2rem; font-WEIGHT: bold; oPaCiTy: 1;'))
+      .toEqual({ fontSize: '2em', fontWeight: 'bold', opacity: '1' });
+  });
+
   it('ignores empty rules', function() {
     expect(cssToStyle('color: ; font-size: 2em; : 1; ;; '))
       .toEqual({ fontSize: '2em' });
