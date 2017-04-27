@@ -22,6 +22,11 @@ describe('css-to-style', function() {
       .toEqual({ cssFloat: 'left' });
   });
 
+  it('transforms rules with dataurls', function() {
+    expect(cssToStyle('cursor: url(data:image/gif;base64,data); color: red'))
+      .toEqual({ cursor: 'url(data:image/gif;base64,data)', color: 'red' });
+  });
+
   it('transforms rule properties of any case to camelCase', function() {
     expect(cssToStyle('FONT-SIZE: 2em; font-WEIGHT: bold; oPaCiTy: 1;'))
       .toEqual({ fontSize: '2em', fontWeight: 'bold', opacity: '1' });

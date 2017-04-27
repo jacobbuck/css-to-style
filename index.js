@@ -7,23 +7,18 @@ function camelCase(value) {
 }
 
 module.exports = function cssToStyle(cssText) {
-  return cssText
-    .split(';')
-    .map(function(value) {
-      return value
-        .split(':')
-        .map(function(value) {
-          return value.trim();
-        });
-    })
-    .filter(function(value) {
-      return value && value[0] && value[1];
-    })
-    .reduce(function(styles, value) {
-      var prop = value[0].toLowerCase();
-      if (prop === 'float') prop = 'cssFloat';
-      if (prop.substr(0, 4) === '-ms-') prop = prop.substr(1);
-      styles[camelCase(prop)] = value[1];
-      return styles;
-    }, {});
+  return cssText.split(/;(?=[^\)]*(?:\(|$))/).reduce(function(styles, rule) {
+    var i = rule.indexOf(':');
+    var prop = rule.substr(0, i).trim().toLowerCase();
+    var value = rule.substr(i + 1).trim();
+    if (prop && value) {
+      if (prop === 'float') {
+        prop = 'cssFloat';
+      } else if (prop.substr(0, 4) === '-ms-') {
+        prop = prop.substr(1);
+      }
+      styles[camelCase(prop)] = value;
+    }
+    return styles;
+  }, {});
 };
