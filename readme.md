@@ -16,7 +16,7 @@ toStyle(cssText);
 
 An object of CSS rules, where the properties are camelCased.
 
-### Example
+## Example
 
 ```js
 import toStyle from 'css-to-style';
