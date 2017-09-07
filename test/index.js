@@ -54,6 +54,14 @@ describe("css-to-style", function() {
     ).toEqual({ fontSize: "2em", fontWeight: "bold", opacity: "1" });
   });
 
+  it("transforms custom properties", function() {
+    expect(cssToStyle("--foo: red; --bar: 2em; opacity: 1")).toEqual({
+      "--foo": "red",
+      "--bar": "2em",
+      opacity: "1",
+    });
+  });
+
   it("ignores empty rules", function() {
     expect(cssToStyle("color: ; font-size: 2em; : 1; ;; ")).toEqual({
       fontSize: "2em",

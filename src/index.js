@@ -42,9 +42,11 @@ const cssToStyle = cssText => {
       if (prop === "float") {
         prop = "cssFloat";
       } else if (prop.substr(0, 4) === "-ms-") {
-        prop = prop.substr(1);
+        prop = camelCase(prop.substr(1));
+      } else if (prop.substr(0, 2) !== "--") {
+        prop = camelCase(prop);
       }
-      styles[camelCase(prop)] = value;
+      styles[prop] = value;
     }
     return styles;
   }, {});
