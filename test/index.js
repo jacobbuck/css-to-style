@@ -30,6 +30,24 @@ describe("css-to-style", function() {
     ).toEqual({ cursor: "url(data:image/gif;base64,data)", color: "red" });
   });
 
+  it("transforms rules with quoted ';' in value", function() {
+    expect(
+      cssToStyle("list-style-type: ';'; list-style-position: outside;")
+    ).toEqual({ listStyleType: "';'", listStylePosition: "outside" });
+    expect(
+      cssToStyle("list-style-type: ':'; list-style-position: outside;")
+    ).toEqual({ listStyleType: "':'", listStylePosition: "outside" });
+  });
+
+  it("transforms rules with quoted ':' in value", function() {
+    expect(
+      cssToStyle('list-style-type: ";"; list-style-position: inside;')
+    ).toEqual({ listStyleType: '";"', listStylePosition: "inside" });
+    expect(
+      cssToStyle('list-style-type: ":"; list-style-position: inside;')
+    ).toEqual({ listStyleType: '":"', listStylePosition: "inside" });
+  });
+
   it("transforms rule properties of any case to camelCase", function() {
     expect(
       cssToStyle("FONT-SIZE: 2em; font-WEIGHT: bold; oPaCiTy: 1;")
