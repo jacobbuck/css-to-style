@@ -13,7 +13,7 @@
     "type": "git",
     "url": "git+https://github.com/jacobbuck/css-to-style.git"
   },
-  "keywords": ["css", "style", "string", "object", "react"],
+  "keywords": ["css", "object", "react", "string", "style"],
   "author": "Jacob Buck <buck.jacob@gmail.com>",
   "license": "MIT",
   "bugs": {
