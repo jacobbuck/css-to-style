@@ -9,7 +9,7 @@ const cssToStyle = cssText => {
   // Split into declarations by semi-colon (outside quotes or parentheses)
   while (i-- > -1) {
     // Capture unescaped quotes
-    if ((cssText[i] === '"' || cssText[i] === "'") && cssText[i - 1] !== "\\") {
+    if ((cssText[i] === '"' || cssText[i] === "'") && cssText[i - 1] !== '\\') {
       if (!capturing) {
         capturing = cssText[i];
       } else if (cssText[i] === capturing) {
@@ -17,33 +17,33 @@ const cssToStyle = cssText => {
       }
     }
     // Start capturing parentheses
-    if (!capturing && cssText[i] === ")") {
+    if (!capturing && cssText[i] === ')') {
       capturing = cssText[i];
     }
     // Stop capturing parentheses
-    if (cssText[i] === "(" && capturing === ")") {
+    if (cssText[i] === '(' && capturing === ')') {
       capturing = false;
     }
     // Split at semi-colon
-    if (i < 0 || (!capturing && cssText[i] === ";")) {
+    if (i < 0 || (!capturing && cssText[i] === ';')) {
       declarations.unshift(cssText.slice(i + 1, last));
       last = i;
     }
   }
 
   return declarations.reduce((styles, rule) => {
-    const i = rule.indexOf(":");
+    const i = rule.indexOf(':');
     const value = rule.substr(i + 1).trim();
     let prop = rule
       .substr(0, i)
       .toLowerCase()
       .trim();
     if (prop && value) {
-      if (prop === "float") {
-        prop = "cssFloat";
-      } else if (prop.substr(0, 4) === "-ms-") {
+      if (prop === 'float') {
+        prop = 'cssFloat';
+      } else if (prop.substr(0, 4) === '-ms-') {
         prop = camelCase(prop.substr(1));
-      } else if (prop.substr(0, 2) !== "--") {
+      } else if (prop.substr(0, 2) !== '--') {
         prop = camelCase(prop);
       }
       styles[prop] = value;
