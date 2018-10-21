@@ -22,6 +22,15 @@ test('transforms float rule property to cssFloat', () => {
   expect(cssToStyle('float: left')).toEqual({ cssFloat: 'left' });
 });
 
+test('transforms rules with urls', () => {
+  expect(
+    cssToStyle('background: red url("awesome/image.png") no-repeat; color: red')
+  ).toEqual({
+    background: 'red url("awesome/image.png") no-repeat',
+    color: 'red',
+  });
+});
+
 test('transforms rules with dataurls', () => {
   expect(
     cssToStyle('cursor: url(data:image/gif;base64,data); color: red')
@@ -33,8 +42,8 @@ test("transforms rules with quoted ';' in value", () => {
     cssToStyle("list-style-type: ';'; list-style-position: outside;")
   ).toEqual({ listStyleType: "';'", listStylePosition: 'outside' });
   expect(
-    cssToStyle("list-style-type: ':'; list-style-position: outside;")
-  ).toEqual({ listStyleType: "':'", listStylePosition: 'outside' });
+    cssToStyle('list-style-type: ":"; list-style-position: outside;')
+  ).toEqual({ listStyleType: '":"', listStylePosition: 'outside' });
 });
 
 test("transforms rules with quoted ':' in value", () => {
