@@ -1,5 +1,26 @@
 const camelCase = str => str.replace(/\-(\w|$)/g, (m, p1) => p1.toUpperCase());
 
+const convertPropertyName = prop => {
+  // Skip CSS variables
+  if (prop.substr(0, 2) === '--') {
+    return prop;
+  }
+
+  prop = prop.toLowerCase();
+
+  // Always return 'float' as 'cssFloat'
+  if (prop === 'float') {
+    return 'cssFloat';
+  }
+
+  // Handle `-ms-` prefx to camelCase as msPropertyName, not MsPropertyName
+  if (prop.substr(0, 4) === '-ms-') {
+    prop = prop.substr(1);
+  }
+
+  return camelCase(prop);
+};
+
 const cssToStyle = cssText => {
   const declarations = [];
   let capturing;
@@ -34,19 +55,9 @@ const cssToStyle = cssText => {
   return declarations.reduce((styles, rule) => {
     const i = rule.indexOf(':');
     const value = rule.substr(i + 1).trim();
-    let prop = rule
-      .substr(0, i)
-      .toLowerCase()
-      .trim();
+    const prop = rule.substr(0, i).trim();
     if (prop && value) {
-      if (prop === 'float') {
-        prop = 'cssFloat';
-      } else if (prop.substr(0, 4) === '-ms-') {
-        prop = camelCase(prop.substr(1));
-      } else if (prop.substr(0, 2) !== '--') {
-        prop = camelCase(prop);
-      }
-      styles[prop] = value;
+      styles[convertPropertyName(prop)] = value;
     }
     return styles;
   }, {});
