@@ -14,6 +14,8 @@ test('transforms multiple rules', () => {
 
 test('transforms no rules', () => {
   expect(cssToStyle('')).toEqual({});
+  expect(cssToStyle('   ')).toEqual({});
+  expect(cssToStyle(' : ;; :;: ;')).toEqual({});
 });
 
 test('transforms rules with browser prefixes', () => {
