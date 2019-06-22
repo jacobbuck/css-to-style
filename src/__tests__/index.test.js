@@ -12,6 +12,10 @@ test('transforms multiple rules', () => {
   });
 });
 
+test('transforms no rules', () => {
+  expect(cssToStyle('')).toEqual({});
+});
+
 test('transforms rules with browser prefixes', () => {
   expect(
     cssToStyle('-webkit-transform: scale(2); -ms-transform: scale(2);')
