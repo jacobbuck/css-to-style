@@ -1,6 +1,7 @@
-const camelCase = str => str.replace(/\-(\w|$)/g, (m, p1) => p1.toUpperCase());
+const camelCase = (str) =>
+  str.replace(/\-(\w|$)/g, (m, p1) => p1.toUpperCase());
 
-const convertPropertyName = prop => {
+const convertPropertyName = (prop) => {
   // Skip CSS variables
   if (prop.substr(0, 2) === '--') {
     return prop;
@@ -21,7 +22,7 @@ const convertPropertyName = prop => {
   return camelCase(prop);
 };
 
-const cssToStyle = cssText => {
+const cssToStyle = (cssText) => {
   const declarations = [];
   let capturing;
   let i = cssText.length;
