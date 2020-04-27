@@ -30,14 +30,14 @@
   },
   "homepage": "https://github.com/jacobbuck/css-to-style",
   "devDependencies": {
-    "@babel/core": "^7.4.5",
-    "@babel/preset-env": "^7.4.5",
-    "husky": "^2.4.1",
-    "jest": "^24.8.0",
-    "lint-staged": "^8.2.1",
-    "prettier": "^1.18.2",
-    "rollup": "^1.16.1",
-    "rollup-plugin-babel": "^4.3.2"
+    "@babel/core": "^7.9.0",
+    "@babel/preset-env": "^7.9.5",
+    "husky": "^4.2.5",
+    "jest": "^25.4.0",
+    "lint-staged": "^10.1.7",
+    "prettier": "^2.0.5",
+    "rollup": "^2.7.2",
+    "rollup-plugin-babel": "^4.4.0"
   },
   "husky": {
     "hooks": {
