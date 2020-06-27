@@ -1,9 +1,13 @@
-const camelCase = (str) =>
-  str.replace(/\-(\w|$)/g, (m, p1) => p1.toUpperCase());
+// Convert a string from kebab-case to camelCase
+const camelCase = (string) =>
+  string.replace(/\-(\w|$)/g, (m, p1) => p1.toUpperCase());
+
+// Checks if a string starts with the characters of a specified string.
+const startsWith = (string, search) => string.indexOf(search) === 0;
 
 const convertPropertyName = (prop) => {
   // Skip CSS variables
-  if (prop.substr(0, 2) === '--') {
+  if (startsWith(prop, '--')) {
     return prop;
   }
 
@@ -14,8 +18,8 @@ const convertPropertyName = (prop) => {
     return 'cssFloat';
   }
 
-  // Handle `-ms-` prefx to camelCase as msPropertyName, not MsPropertyName
-  if (prop.substr(0, 4) === '-ms-') {
+  // Handle `-ms-` prefix to camelCase as msPropertyName, not MsPropertyName
+  if (startsWith(prop, '-ms-')) {
     prop = prop.substr(1);
   }
 
