@@ -6,12 +6,12 @@ const camelCase = (string) =>
 const startsWith = (string, search) => string.indexOf(search) === 0;
 
 const convertPropertyName = (prop) => {
+  prop = prop.toLowerCase();
+
   // Skip CSS variables
   if (startsWith(prop, '--')) {
     return prop;
   }
-
-  prop = prop.toLowerCase();
 
   // Always return 'float' as 'cssFloat'
   if (prop === 'float') {
@@ -26,7 +26,7 @@ const convertPropertyName = (prop) => {
   return camelCase(prop);
 };
 
-const cssToStyle = (cssText) => {
+const splitDeclarations = (cssText) => {
   const declarations = [];
   let capturing;
   let i = cssText.length;
@@ -57,15 +57,21 @@ const cssToStyle = (cssText) => {
     }
   }
 
-  return declarations.reduce((styles, rule) => {
-    const i = rule.indexOf(':');
-    const value = rule.substr(i + 1).trim();
-    const prop = rule.substr(0, i).trim();
-    if (prop && value) {
-      styles[convertPropertyName(prop)] = value;
-    }
-    return styles;
-  }, {});
+  return declarations;
 };
+
+const splitDeclaration = (declaration) => {
+  const i = declaration.indexOf(':');
+  return [declaration.substr(0, i).trim(), declaration.substr(i + 1).trim()];
+};
+
+const cssToStyle = (cssText) =>
+  splitDeclarations(cssText)
+    .map(splitDeclaration)
+    .filter(([name, value]) => name && value)
+    .reduce((styles, [name, value]) => {
+      styles[convertPropertyName(name)] = value;
+      return styles;
+    }, {});
 
 export default cssToStyle;
