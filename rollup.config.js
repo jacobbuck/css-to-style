@@ -6,5 +6,5 @@ export default {
     { file: 'lib/index.cjs.js', format: 'cjs' },
     { file: 'lib/index.esm.js', format: 'esm' },
   ],
-  plugins: [babel()],
+  plugins: [babel({ babelHelpers: 'bundled' })],
 };
