@@ -2,7 +2,7 @@
 
 ## v1.3.3 - 2020-06-27
 
-## Added
+### Added
 
 - Set `"sideEffects": false` in [package.json](./package.json).
 
@@ -61,7 +61,7 @@
 
 ## v1.0.3 - 2017-04-28
 
-## Added
+### Added
 
 - Added support for handling [Data URLs](https://developer.mozilla.org/en-US/docs/Web/HTTP/Basics_of_HTTP/Data_URIs) inside values.
 - Handles uppercased property names by lowercasing them.
