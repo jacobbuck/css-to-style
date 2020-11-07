@@ -2,24 +2,21 @@
 const camelCase = (string) =>
   string.replace(/\-(\w|$)/g, (m, p1) => p1.toUpperCase());
 
-// Checks if a string starts with the characters of a specified string.
-const startsWith = (string, search) => string.indexOf(search) === 0;
-
 const convertPropertyName = (prop) => {
   prop = prop.toLowerCase();
-
-  // Skip CSS variables
-  if (startsWith(prop, '--')) {
-    return prop;
-  }
 
   // Always return 'float' as 'cssFloat'
   if (prop === 'float') {
     return 'cssFloat';
   }
 
+  // Skip CSS variables
+  if (prop.startsWith('--')) {
+    return prop;
+  }
+
   // Handle `-ms-` prefix to camelCase as msPropertyName, not MsPropertyName
-  if (startsWith(prop, '-ms-')) {
+  if (prop.startsWith('-ms-')) {
     prop = prop.substr(1);
   }
 
