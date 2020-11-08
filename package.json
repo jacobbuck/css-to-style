@@ -1,6 +1,6 @@
 {
   "name": "css-to-style",
-  "version": "1.3.3",
+  "version": "1.4.0",
   "description": "Transform a string of css rules into a style object",
   "main": "lib/index.cjs.js",
   "module": "lib/index.esm.js",
