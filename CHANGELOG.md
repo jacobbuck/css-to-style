@@ -1,5 +1,15 @@
 # Changelog
 
+## Unreleased
+
+### Added
+
+- Added source maps to build output.
+
+### Changed
+
+- Updated devDependencies.
+
 ## v1.3.3 - 2020-06-27
 
 ### Added
@@ -75,4 +85,3 @@
 ## v1.0.0 - 2017-04-25
 
 Initial public version! :tada:
-
