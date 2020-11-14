@@ -1,6 +1,6 @@
 // Convert a string from kebab-case to camelCase
 const camelCase = (string) =>
-  string.replace(/\-(\w|$)/g, (m, p1) => p1.toUpperCase());
+  string.replace(/-(\w|$)/g, (m, p1) => p1.toUpperCase());
 
 const convertPropertyName = (prop) => {
   prop = prop.toLowerCase();
