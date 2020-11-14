@@ -65,9 +65,10 @@ const splitDeclaration = (declaration) => {
 const cssToStyle = (cssText) =>
   splitDeclarations(cssText)
     .map(splitDeclaration)
-    .filter(([name, value]) => name && value)
     .reduce((styles, [name, value]) => {
-      styles[convertPropertyName(name)] = value;
+      if (name && value) {
+        styles[convertPropertyName(name)] = value;
+      }
       return styles;
     }, {});
 
